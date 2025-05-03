@@ -18,6 +18,12 @@ import { VIDEOLIST_MOCK } from '../../../mocks/videolist';
 export class YoutubeServiceV2 implements IYoutubeService {
   constructor(@Inject(APP_CONFIG) private readonly appConfig: IAppConfig, private http: HttpClient) {}
 
+  // public searchList(params: IYoutubeSearchParams): Observable<IYoutubeSearchResult> {
+  //   const { query } = params;
+  //   const url = `${this.prefix}/searchlist?q=${query}`;
+  //   return this.http.get<IYoutubeSearchResult>(url);
+  // }
+
   public searchList(params: IYoutubeSearchParams): Observable<IYoutubeSearchResult> {
     const { query } = params;
 
