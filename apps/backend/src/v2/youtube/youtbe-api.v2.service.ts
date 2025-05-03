@@ -11,50 +11,25 @@ import {
 } from '@youtube/common-ui';
 import { catchError, EMPTY, forkJoin, from, map, Observable, of } from 'rxjs';
 import * as yts from 'youtube-sr';
-import { SEARCHLIST_MOCK } from '../../../../shell/src/mocks/searchlist';
-import { VIDEOLIST_MOCK } from '../../../../shell/src/mocks/videolist';
 
 @Injectable()
 export class YoutubeApiServiceV2 {
-  searchList(query: string): Observable<IYoutubeSearchResult> {
-    const searchListItems = SEARCHLIST_MOCK.items.map((result) => ({
-      kind: result.kind,
-      etag: result.etag,
-      id: result.id,
-      snippet: {
-        ...result.snippet,
-        publishedAt: new Date('2017-01-11T00:00:00Z'),
-      },
-    }));
-  
-    return of({
-      kind: SEARCHLIST_MOCK.kind,
-      etag: SEARCHLIST_MOCK.etag,
-      regionCode: SEARCHLIST_MOCK.regionCode,
-      pageInfo: SEARCHLIST_MOCK.pageInfo,
-      items: searchListItems,
-    });
+  public searchList(query: string): Observable<IYoutubeSearchResult> {
+    return from(yts.default.search(query)).pipe(
+      catchError(() => {
+        return EMPTY;
+      }),
+      map((res) => this.mapToYoutubeSearchResult(res))
+    );
   }
 
-  videoList(videoIds: string[]): Observable<IYoutubeVideoResult[]> {
-    const result: IYoutubeVideoResult[] = VIDEOLIST_MOCK.map((entry) => ({
-      ...entry,
-      items: entry.items.map((item) => ({
-        ...item,
-        snippet: {
-          ...item.snippet,
-          publishedAt: new Date(item.snippet.publishedAt),
-        },
-        statistics: {
-          ...item.statistics,
-          likeCount: String(item.statistics.likeCount),
-          favoriteCount: String(item.statistics.favoriteCount),
-          commentCount: String(item.statistics.commentCount),
-        },
-      })),
-    }));
-  
-    return of(result);
+  public videoList(id: string): Observable<IYoutubeVideoResult[]> {
+    if (!id) {
+      return of([]);
+    }
+    const transformedId = id.split(',');
+    const requests: Observable<IYoutubeVideoResult>[] = transformedId.map((query) => this.getVideoListRequest(query));
+    return forkJoin(requests).pipe(map((result: IYoutubeVideoResult[]) => result.filter(Boolean)));
   }
 
   private getVideoListRequest(id: string): Observable<IYoutubeVideoResult> {
