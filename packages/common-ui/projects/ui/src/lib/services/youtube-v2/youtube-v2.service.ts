@@ -37,8 +37,6 @@ export class YoutubeServiceV2 implements IYoutubeService {
              description.includes(query.toLowerCase());
     });
 
-    console.log('Search query:', query);
-    console.log('Filtered items:', searchListItems);
 
     return of({
       kind: undefined,
@@ -110,7 +108,7 @@ export class YoutubeServiceV2 implements IYoutubeService {
           },
           statistics: item.statistics
             ? {
-                viewCount: item.statistics.viewCount ?? 0,
+                viewCount: item.statistics.viewCount,
                 likeCount: String(item.statistics.likeCount),
                 favoriteCount: String(item.statistics.favoriteCount),
                 commentCount: String(item.statistics.commentCount),
