@@ -36,5 +36,3 @@ const config: ApplicationConfig = {
   customElements.define('likes-app-element', ce);
 })();
 
-/* For running app seperately without shell */
-// bootstrapApplication(AppComponent, config).catch((err) => console.error(err));

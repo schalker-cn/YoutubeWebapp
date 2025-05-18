@@ -116,7 +116,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   private getCountryCode(): void {
-    // load only on production to save api traffic :)
+    
     if (!environment.production || isPlatformServer(this.platformId)) {
       return;
     }

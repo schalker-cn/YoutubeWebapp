@@ -40,7 +40,7 @@ export class WatchVideoComponent implements OnInit, OnDestroy {
   public videoId!: string;
   public startSeconds?: number;
   public videoInfo?: IYoutubeVideoItem;
-  // fallback video in case api v2 fails.
+  
   public fallBackVideoInfo?: IYoutubeVideoItem;
 
   private readonly onDestroy$ = new Subject<void>();

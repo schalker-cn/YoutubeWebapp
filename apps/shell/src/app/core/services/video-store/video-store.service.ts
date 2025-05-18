@@ -43,7 +43,7 @@ export class VideoStoreService {
     return this.store.select(selectCurrentVideoId);
   }
 
-  // save mini video settings so on page reload to show it again
+  
   private saveMiniVideoSettings(videoPayload: MiniVideoPayload | undefined): void {
     if (videoPayload?.videoId && videoPayload?.startSeconds) {
       this.webApiService.localStorage.setItem(LocalStorageEnum.MINI_WIDEO_SETTINGS, JSON.stringify(videoPayload));

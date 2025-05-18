@@ -19,20 +19,20 @@ export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState, Actio
   }),
 });
 
-// Video state selectors
+
 export const selectVideoState = createFeatureSelector<fromVideo.VideoState>(fromVideo.featureKey);
 export const selectVideoSearchQuery = createSelector(selectVideoState, fromVideo.selectSearchQuery);
 export const selectIsMiniPlayerMode = createSelector(selectVideoState, fromVideo.selectVideoIsMiniPlayerMode);
 export const selectMiniPlayerVideo = createSelector(selectVideoState, fromVideo.selectVideoMiniPlayerVideo);
 export const selectCurrentVideoId = createSelector(selectVideoState, fromVideo.selectCurrentVideoId);
 
-// Account state selectors
+
 export const selectAccountState = createFeatureSelector<fromAccount.AccountState>(fromAccount.featureKey);
 export const selectLikedVideos = createSelector(selectAccountState, fromAccount.selectLikedVideos);
 export const selectDislikedVideos = createSelector(selectAccountState, fromAccount.selectDislikedVideos);
 export const selectedWatchedVideos = createSelector(selectAccountState, fromAccount.selectedWatchedVideos);
 export const selectIsWatchHistoryEnabled = createSelector(selectAccountState, fromAccount.selectIsWatchHistoryEnabled);
 
-// Settings state selectors
+
 export const selectSettingsState = createFeatureSelector<fromSettings.SettingsState>(fromSettings.featureKey);
 export const selectTheme = createSelector(selectSettingsState, fromSettings.selectSettingsTheme);

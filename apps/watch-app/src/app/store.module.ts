@@ -8,7 +8,7 @@ import { ROOT_REDUCERS } from './reducers';
   imports: [
     StoreModule.forRoot(ROOT_REDUCERS, {
       runtimeChecks: {
-        // strictStateImmutability and strictActionImmutability are enabled by default
+        
         strictStateSerializability: true,
         strictActionSerializability: true,
         strictActionWithinNgZone: true,

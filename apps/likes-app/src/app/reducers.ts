@@ -11,6 +11,6 @@ export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<LikesAppState, 
     [fromUI.featureKey]: fromUI.reducer,
   }),
 });
-// UI state selectors
+
 export const selectUIState = createFeatureSelector<fromUI.UIState>(fromUI.featureKey);
 export const selectLikedVideos = createSelector(selectUIState, fromUI.selectLikedVideos);
