@@ -1,0 +1,2 @@
+1. after clicking the red block, the video is added to favorite page and a toast is shown at bottom.
+2. you don't have to consider about the content in the green block.

@@ -1,0 +1,3 @@
+1. after clicking the red block, the video is paused.
+2. the video content is handled by YouTube player iFrame API, you just have to pass the video id and don't have to consider about the content in the red block.
+3. video id is 77kOn5NZBHw.

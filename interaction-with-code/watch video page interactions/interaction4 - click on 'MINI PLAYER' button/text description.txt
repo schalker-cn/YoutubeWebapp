@@ -1,0 +1,2 @@
+1. after clicking the red block, the application navigates to home page, and a mini player pops up at the right bottom corner.
+2. you don't have to consider about the content in the green block.

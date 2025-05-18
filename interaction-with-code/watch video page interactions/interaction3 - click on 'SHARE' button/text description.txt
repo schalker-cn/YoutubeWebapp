@@ -1,0 +1,2 @@
+1. after clicking the red block, the share component pops up.
+2. you don't have to consider about the content in the green block.
